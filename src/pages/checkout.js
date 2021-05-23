@@ -21,11 +21,11 @@ function Checkout() {
             <main className="lg:flex max-w-screen-2xl mx-auto">
                 {/* left */}
                 <div className="flex-grow m-5 shadow-sm">
-                    <Image src="https://links.papareact.com/ikj" width={1020} height={250}  alt="" objectFit="contain"/>
+                    <Image className="mx-auto" src="https://links.papareact.com/ikj" width={1020} height={250}  alt="" objectFit="contain"/>
                 
                 
-                <div className="flex flex-col p-5 space-y-10 bg-white">
-                    <h1 className="text-3xl border-b pb-4">
+                    <div className="flex flex-col border-b py-5 px-5 mt-3 bg-white">
+                        <h1 className="text-3xl pb-4 font-semibold">
                         {items.length=== 0 ? 'Your Shopping Basket is empty' : 'Shopping Basket'}
                     </h1>
                     {items.map((item, i) => (
@@ -47,26 +47,23 @@ function Checkout() {
 
 
                 {/* right */}
-                <div className="flex flex-col bg-white p-10 shadow-md">
-                    {items.length > 0 && (
+                <div className="flex flex-col bg-white p-7 shadow-md">
+                    {!!items.length && (
                         <>
-                        <h2 className="whitespace-nowrap"> Subtotal ({items.length} items): 
-                        <span  className="font-bold">
-                            <Currency quantity={total}/>
-                            </span>
-                        </h2>
-                        <button disabled={!session}
-                        className={`button mt-2 ${!session && "from-gray-300 to-gray-400 border-gray-200 text-gray-300 cursor-not-allowed"}`}>
-                            {!session ? 'Log in To Checkout' : 'Proceed to checkout'}
-                        </button>
+                            <h2 className="whitespace-nowrap">Subtotal ({items.length} items):{" "}
+                                <span className="font-bold text-gray-500">
+                                    <Currency
+                                        quantity={total}
+                                    />
+                                </span>
+                            </h2>
+                            <button disabled={!session} className={`button mt-2 ${!session && `cursor-not-allowed from-gray-300 to-gray-500 text-gray-300`}`}>
+                                {!session ? 'Sign in to checkout': 'Proceed to checkout'}
+                            </button>
                         </>
                     )}
-
                 </div>
-    
             </main>
-
-
         </div>
     )
 }
